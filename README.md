@@ -1,20 +1,24 @@
 # PAA_Sort_Algorithms
-A search about sort algorithm for a university homework.
+<h1>A search about sort algorithms for State University of Sao Paulo - UNESP - FCT homework.</h1>
 
-Sort Algorithms:
+<img src="https://www.computerhope.com/jargon/s/sort.jpg" alt="Just representative" align="center">
 
-Bubble Sort (Original version without improvements);<br/>
-Bubble Sort improved (Checks whether the vector is already classified);<br/>
-Quick Sort (With pivot being the first element of the list - partition);<br/>
-Quick Sort (With pivot being the central element of the list - partition);<br/>
-Insertion Sort (Simple insertion or direct insertion);<br/>
-Shell Sort;<br/>
-Selection Sort (Direct insertion);<br/>
-Heap Sort;<br/>
-Merge Sort;<br/>
+<h2>Sort Algorithms:</h2>
 
-Research team composed by:
-
-Gabriela Sinastre<br/>
-Karen Almeida<br/>
-Maykon Borges<br/>
+<ul>
+  <li>Bubble Sort (Original version without improvements);</li>
+<li>Bubble Sort improved (Checks whether the vector is already classified);</li>
+<li>Quick Sort (With pivot being the first element of the list - partition);</li>
+<li>Quick Sort (With pivot being the central element of the list - partition);</li>
+<li>Insertion Sort (Simple insertion or direct insertion);</li>
+<li>Shell Sort;</li>
+<li>Selection Sort (Direct insertion);</li>
+<li>Heap Sort;</li>
+<li>Merge Sort;</li>
+</ul>
+<h2>Research team composed by:</h2>
+<ul>
+<li>Gabriela Sinastre :dragon:</li>
+<li>Karen Almeida :hamburger:</li>
+<li>Maykon Borges :herb:</li>
+</ul>
