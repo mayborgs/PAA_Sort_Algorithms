@@ -11,6 +11,8 @@ int creategrowvector(int *grow);
 int createdecrevector(int *decre);
 int showvector(int rand[]);
 void quick_sort(int *a, int left, int right);
+void insertionSort(int array[], int size);
+void shellSort(int array[], int n);
 
 int createrandomvector(int *random) {
     int i = 0;
@@ -79,14 +81,13 @@ void quick_sort(int *a, int left, int right) {
     }
 }
 
-
 void insertionSort(int array[], int size) {
-    for (int step = 1; step < size; step++) {
+    for (int step = 1; step < size; step++) {// (n)
         int key = array[step];
         int j = step - 1;
         // Compara a key com cada elemento a sua esquerda até encontrar onde deve ser inserido ou qual elemento é maior que a chave
         // Para ondem decrescente,altere key<array[j] para key>array[j].
-        while (key < array[j] && j >= 0) {
+        while (key < array[j] && j >= 0) {//(n-1)
             array[j + 1] = array[j];
             --j;
         }
@@ -94,6 +95,19 @@ void insertionSort(int array[], int size) {
     }
 }
 
+void shellSort(int array[], int n) {
+  // Intervalos n/2, n/4, n/8, ...
+  for (int interval = n / 2; interval > 0; interval /= 2) {
+    for (int i = interval; i < n; i += 1) {
+      int temp = array[i];
+      int j;
+      for (j = i; j >= interval && array[j - interval] > temp; j -= interval) {
+        array[j] = array[j - interval];
+      }
+      array[j] = temp;
+    }
+  }
+}
 
 int main(void) {
 
@@ -109,6 +123,7 @@ int main(void) {
     showvector(randvector);
     //quick_sort(randvector,0,MAX-1);
     //insertionSort(randvector,MAX);
+    //shellSort(randvector,MAX);
     showvector(growvector);
     showvector(decrevector);
     showvector(randvector);
