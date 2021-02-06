@@ -13,6 +13,8 @@ int showvector(int rand[]);
 void quick_sort(int *a, int left, int right);
 void insertionSort(int array[], int size);
 void shellSort(int array[], int n);
+void bubbleSort(int array[], int length);
+void bubbleSortBetter(int array[], int length);
 
 int createrandomvector(int *random) {
     int i = 0;
@@ -85,7 +87,7 @@ void insertionSort(int array[], int size) {
     for (int step = 1; step < size; step++) {// (n)
         int key = array[step];
         int j = step - 1;
-        // Compara a key com cada elemento a sua esquerda até encontrar onde deve ser inserido ou qual elemento é maior que a chave
+        // Compara a key com cada elemento a sua esquerda atï¿½ encontrar onde deve ser inserido ou qual elemento ï¿½ maior que a chave
         // Para ondem decrescente,altere key<array[j] para key>array[j].
         while (key < array[j] && j >= 0) {//(n-1)
             array[j + 1] = array[j];
@@ -109,6 +111,44 @@ void shellSort(int array[], int n) {
   }
 }
 
+// Bubble Sort
+void bubbleSort(int array[], int length)
+{
+  int aux = 0;
+  for (int j = 0; j < length; j++)
+  {
+    for (int i = 0; i < length; i++)
+    {
+      if (array[i] > array[i + 1])
+      {
+        aux = array[i];
+        array[i] = array[i + 1];
+        array[i + 1] = aux;
+      }
+    }
+  }
+}
+
+// Bubble Sort melhorado
+void bubbleSortBetter(int array[], int length)
+{
+  int aux, count;
+  aux = count = 0;
+
+  for (int j = 0; j < length && count == 0; j++)
+  {
+    count = 1;
+    for (int i = 0; i < length; i++)
+      if (array[i] > array[i + 1])
+      {
+        aux = array[i];
+        array[i] = array[i + 1];
+        array[i + 1] = aux;
+        count = 0;
+      }
+  }
+}
+
 int main(void) {
 
 //srand(time(NULL)); talvez nao sera preciso
@@ -124,6 +164,7 @@ int main(void) {
     //quick_sort(randvector,0,MAX-1);
     //insertionSort(randvector,MAX);
     //shellSort(randvector,MAX);
+    //bubbleSort(randvector, MAX);
     showvector(growvector);
     showvector(decrevector);
     showvector(randvector);
