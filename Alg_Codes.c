@@ -13,6 +13,8 @@ int showvector(int rand[]);
 void quick_sort(int *a, int left, int right);
 void insertionSort(int array[], int size);
 void shellSort(int array[], int n);
+void swap(int *a, int *b);
+void selectionSort(int array[], int size);
 
 int createrandomvector(int *random) {
     int i = 0;
@@ -109,6 +111,27 @@ void shellSort(int array[], int n) {
   }
 }
 
+void swap(int *a, int *b) {
+  int temp = *a;
+  *a = *b;
+  *b = temp;
+}
+
+void selectionSort(int array[], int size) {
+  for (int step = 0; step < size - 1; step++) {
+    int min_idx = step;
+    for (int i = step + 1; i < size; i++) {
+
+      // To sort in descending order, change > to < in this line.
+      // Select the minimum element in each loop.
+      if (array[i] < array[min_idx])
+        min_idx = i;
+    }
+
+    // put min at the correct position
+    swap(&array[min_idx], &array[step]);
+  }
+}
 int main(void) {
 
 //srand(time(NULL)); talvez nao sera preciso
@@ -124,6 +147,7 @@ int main(void) {
     //quick_sort(randvector,0,MAX-1);
     //insertionSort(randvector,MAX);
     //shellSort(randvector,MAX);
+    //selectionSort(randvector,MAX);
     showvector(growvector);
     showvector(decrevector);
     showvector(randvector);
