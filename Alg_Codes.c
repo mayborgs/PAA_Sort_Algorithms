@@ -2,10 +2,10 @@
 #include <stdio.h>
 #include <math.h>
 #include <time.h>
-#define MAX 15
+#define MAX 15000
 
 //colocar tamanho do vetor na linha 5, definindo MAX. (Ex: MAX 15 para MAX 2000, muda o teste de uma vetor de 15 elementos para 2000 elementos)
-
+//o tempo de execução está em milissegundos.
 int createrandomvector(int *random);
 int creategrowvector(int *grow);
 int createdecrevector(int *decre);
@@ -84,6 +84,8 @@ void quick_sort(int *a, int left, int right) {
 }
 
 void insertionSort(int array[], int size) {
+    clock_t t;
+    t = clock();
     for (int step = 1; step < size; step++) {// (n)
         int key = array[step];
         int j = step - 1;
@@ -95,42 +97,52 @@ void insertionSort(int array[], int size) {
         }
         array[j + 1] = key;
     }
+    t = clock() - t;
+    printf("Tempo de execucao Insertion Sort para n = %d: %lf ms", MAX, ((double)t)/((CLOCKS_PER_SEC/1000)));
 }
 
 void shellSort(int array[], int n) {
-  // Intervalos n/2, n/4, n/8, ...
-  for (int interval = n / 2; interval > 0; interval /= 2) {
-    for (int i = interval; i < n; i += 1) {
-      int temp = array[i];
-      int j;
-      for (j = i; j >= interval && array[j - interval] > temp; j -= interval) {
-        array[j] = array[j - interval];
-      }
-      array[j] = temp;
+    // Intervalos n/2, n/4, n/8, ...
+    clock_t t;
+    t = clock();
+    for (int interval = n / 2; interval > 0; interval /= 2) {
+        for (int i = interval; i < n; i += 1) {
+            int temp = array[i];
+            int j;
+            for (j = i; j >= interval && array[j - interval] > temp; j -= interval) {
+                array[j] = array[j - interval];
+            }
+            array[j] = temp;
+        }
     }
-  }
+    t = clock() - t;
+    printf("Tempo de execucao Shell Sort para n = %d: %lf ms", MAX,((double)t)/((CLOCKS_PER_SEC/1000)));
 }
 
 void swap(int *a, int *b) {
-  int temp = *a;
-  *a = *b;
-  *b = temp;
+    int temp = *a;
+    *a = *b;
+    *b = temp;
 }
 
 void selectionSort(int array[], int size) {
-  for (int step = 0; step < size - 1; step++) {
-    int min_idx = step;
-    for (int i = step + 1; i < size; i++) {
+    clock_t t;
+    t = clock();
+    for (int step = 0; step < size - 1; step++) {
+        int min_idx = step;
+        for (int i = step + 1; i < size; i++) {
 
-      // To sort in descending order, change > to < in this line.
-      // Select the minimum element in each loop.
-      if (array[i] < array[min_idx])
-        min_idx = i;
+            // To sort in descending order, change > to < in this line.
+            // Select the minimum element in each loop.
+            if (array[i] < array[min_idx])
+                min_idx = i;
+        }
+
+        // put min at the correct position
+        swap(&array[min_idx], &array[step]);
     }
-
-    // put min at the correct position
-    swap(&array[min_idx], &array[step]);
-  }
+    t = clock() - t;
+    printf("Tempo de execucao Selection Sort para n = %d: %lf ms", MAX, ((double)t)/((CLOCKS_PER_SEC/1000)));
 }
 int main(void) {
 
@@ -143,14 +155,14 @@ int main(void) {
     createrandomvector(randvector);
     creategrowvector(growvector);
     createdecrevector(decrevector);
-    showvector(randvector);
+    //showvector(randvector);
     //quick_sort(randvector,0,MAX-1);
     //insertionSort(randvector,MAX);
     //shellSort(randvector,MAX);
-    //selectionSort(randvector,MAX);
-    showvector(growvector);
-    showvector(decrevector);
-    showvector(randvector);
+    selectionSort(randvector,MAX);
+    //showvector(growvector);
+    //showvector(decrevector);
+    //showvector(randvector);
 
     return(0);
 }
