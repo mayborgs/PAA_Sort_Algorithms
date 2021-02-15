@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <time.h>
-#define MAX 15000
+#define MAX 100000
 
 //colocar tamanho do vetor na linha 5, definindo MAX. (Ex: MAX 15 para MAX 2000, muda o teste de uma vetor de 15 elementos para 2000 elementos)
 //o tempo de execu��o est� em milissegundos.
@@ -100,7 +100,7 @@ void insertionSort(int array[], int size) {
         array[j + 1] = key;
     }
     t = clock() - t;
-    printf("Tempo de execucao Insertion Sort para n = %d: %lf ms", MAX, ((double)t)/((CLOCKS_PER_SEC/1000)));
+    printf("Tempo de execucao Insertion Sort para n = %d: %lf ms \n", MAX, ((double)t)/((CLOCKS_PER_SEC/1000)));
 }
 
 void shellSort(int array[], int n) {
@@ -118,7 +118,7 @@ void shellSort(int array[], int n) {
         }
     }
     t = clock() - t;
-    printf("Tempo de execucao Shell Sort para n = %d: %lf ms", MAX,((double)t)/((CLOCKS_PER_SEC/1000)));
+    printf("Tempo de execucao Shell Sort para n = %d: %lf ms\n", MAX,((double)t)/((CLOCKS_PER_SEC/1000)));
 }
 
 void swap(int *a, int *b) {
@@ -129,47 +129,41 @@ void swap(int *a, int *b) {
 
 // Bubble Sort
 void bubbleSort(int array[], int length) {
-  clock_t t;
-  t = clock();
-  int aux = 0;
-  for (int j = 0; j < length; j++)
-  {
-    for (int i = 0; i < length; i++)
-    {
-      if (array[i] > array[i + 1])
-      {
-        aux = array[i];
-        array[i] = array[i + 1];
-        array[i + 1] = aux;
-      }
+    clock_t t;
+    t = clock();
+    int aux = 0;
+    for (int j = 0; j < length; j++) {
+        for (int i = 0; i < length; i++) {
+            if (array[i] > array[i + 1]) {
+                aux = array[i];
+                array[i] = array[i + 1];
+                array[i + 1] = aux;
+            }
+        }
     }
-  }
-  t = clock() - t;
-  printf("Tempo de execucao bubble Sort para n = %d: %lf ms", MAX,((double)t)/((CLOCKS_PER_SEC/1000)));
+    t = clock() - t;
+    printf("Tempo de execucao bubble Sort para n = %d: %lf ms", MAX,((double)t)/((CLOCKS_PER_SEC/1000)));
 }
 
 // Bubble Sort melhorado
-void bubbleSortBetter(int array[], int length)
-{
-  clock_t t;
-  t = clock();
-  int aux, count;
-  aux = count = 0;
+void bubbleSortBetter(int array[], int length) {
+    clock_t t;
+    t = clock();
+    int aux, count;
+    aux = count = 0;
 
-  for (int j = 0; j < length && count == 0; j++)
-  {
-    count = 1;
-    for (int i = 0; i < length; i++)
-      if (array[i] > array[i + 1])
-      {
-        aux = array[i];
-        array[i] = array[i + 1];
-        array[i + 1] = aux;
-        count = 0;
-      }
-  }
-  t = clock() - t;
-  printf("Tempo de execucao bubble Sort Melhorado para n = %d: %lf ms", MAX,((double)t)/((CLOCKS_PER_SEC/1000)));
+    for (int j = 0; j < length && count == 0; j++) {
+        count = 1;
+        for (int i = 0; i < length; i++)
+            if (array[i] > array[i + 1]) {
+                aux = array[i];
+                array[i] = array[i + 1];
+                array[i + 1] = aux;
+                count = 0;
+            }
+    }
+    t = clock() - t;
+    printf("Tempo de execucao bubble Sort Melhorado para n = %d: %lf ms", MAX,((double)t)/((CLOCKS_PER_SEC/1000)));
 }
 
 void selectionSort(int array[], int size) {
@@ -189,7 +183,7 @@ void selectionSort(int array[], int size) {
         swap(&array[min_idx], &array[step]);
     }
     t = clock() - t;
-    printf("Tempo de execucao Selection Sort para n = %d: %lf ms", MAX, ((double)t)/((CLOCKS_PER_SEC/1000)));
+    printf("Tempo de execucao Selection Sort para n = %d: %lf ms\n", MAX, ((double)t)/((CLOCKS_PER_SEC/1000)));
 }
 
 // Heap Sort
@@ -241,14 +235,25 @@ int main(void) {
     createdecrevector(decrevector);
     //showvector(randvector);
     //quick_sort(randvector,0,MAX-1);
+    //insertionSort(growvector,MAX);
+    //insertionSort(decrevector,MAX);
     //insertionSort(randvector,MAX);
+    //shellSort(growvector,MAX);
+    //shellSort(decrevector,MAX);
     //shellSort(randvector,MAX);
     //bubbleSort(randvector, MAX);
+
     //heapSort(randvector, MAX);
-    showvector(growvector);
-    showvector(decrevector);
-    showvector(randvector);
-    selectionSort(randvector,MAX);
+   
+
+    //showvector(growvector);
+    //showvector(decrevector);
+    //showvector(randvector);
+    //selectionSort(growvector,MAX);
+    //selectionSort(decrevector,MAX);
+    //selectionSort(randvector,MAX);
+    //bubbleSort(randvector,MAX);
+    //bubbleSortBetter(randvector,MAX);
     //showvector(growvector);
     //showvector(decrevector);
     //showvector(randvector);
