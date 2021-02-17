@@ -2,10 +2,11 @@
 #include <stdio.h>
 #include <math.h>
 #include <time.h>
-#define MAX 100000
+#define MAX 1000
 
 //colocar tamanho do vetor na linha 5, definindo MAX. (Ex: MAX 15 para MAX 2000, muda o teste de uma vetor de 15 elementos para 2000 elementos)
 //o tempo de execu��o est� em milissegundos.
+
 int createrandomvector(int *random);
 int creategrowvector(int *grow);
 int createdecrevector(int *decre);
@@ -142,7 +143,7 @@ void bubbleSort(int array[], int length) {
         }
     }
     t = clock() - t;
-    printf("Tempo de execucao bubble Sort para n = %d: %lf ms", MAX,((double)t)/((CLOCKS_PER_SEC/1000)));
+    printf("Tempo de execucao bubble Sort para n = %d: %lf ms\n", MAX,((double)t)/((CLOCKS_PER_SEC/1000)));
 }
 
 // Bubble Sort melhorado
@@ -163,7 +164,7 @@ void bubbleSortBetter(int array[], int length) {
             }
     }
     t = clock() - t;
-    printf("Tempo de execucao bubble Sort Melhorado para n = %d: %lf ms", MAX,((double)t)/((CLOCKS_PER_SEC/1000)));
+    printf("Tempo de execucao bubble Sort Melhorado para n = %d: %lf ms\n", MAX,((double)t)/((CLOCKS_PER_SEC/1000)));
 }
 
 void selectionSort(int array[], int size) {
@@ -192,35 +193,39 @@ void heapify(int array[], int n, int i) {
     int largest = i;
     int left = 2 * i + 1;
     int right = 2 * i + 2;
-  
+
     if (left < n && array[left] > array[largest])
       largest = left;
-  
+
     if (right < n && array[right] > array[largest])
       largest = right;
-  
+
     // Swap and continue heapifying if root is not largest
     if (largest != i) {
       swap(&array[i], &array[largest]);
       heapify(array, n, largest);
     }
 }
-  
+
 // Main function to do heap sort
 void heapSort(int array[], int n) {
     // Build max heap
+    clock_t t;
+    t = clock();
     for (int i = n / 2 - 1; i >= 0; i--)
       heapify(array, n, i);
-  
+
     // Heap sort
     for (int i = n - 1; i >= 0; i--) {
       swap(&array[0], &array[i]);
-  
+
       // Heapify root element to get highest element at root again
       heapify(array, i, 0);
     }
+    t = clock() - t;
+    printf("Tempo de execucao Heap Sort para n = %d: %lf ms\n", MAX, ((double)t)/((CLOCKS_PER_SEC/1000)));
 }
-  
+
 
 int main(void) {
 
@@ -241,19 +246,22 @@ int main(void) {
     //shellSort(growvector,MAX);
     //shellSort(decrevector,MAX);
     //shellSort(randvector,MAX);
+    //bubbleSort(growvector, MAX);
+    //bubbleSort(decrevector, MAX);
     //bubbleSort(randvector, MAX);
-
-    //heapSort(randvector, MAX);
-   
-
+    //bubbleSortBetter(growvector,MAX);
+    //bubbleSortBetter(decrevector,MAX);
+    //bubbleSortBetter(randvector,MAX);
+    heapSort(growvector, MAX);
+    heapSort(decrevector, MAX);
+    heapSort(randvector, MAX);
     //showvector(growvector);
     //showvector(decrevector);
     //showvector(randvector);
     //selectionSort(growvector,MAX);
     //selectionSort(decrevector,MAX);
     //selectionSort(randvector,MAX);
-    //bubbleSort(randvector,MAX);
-    //bubbleSortBetter(randvector,MAX);
+
     //showvector(growvector);
     //showvector(decrevector);
     //showvector(randvector);
